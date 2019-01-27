@@ -2,7 +2,7 @@
 Below document highlights the common attacks that have been addressed in the current project.
 
 ## Course Requirement
-Explain what measures you’ve taken to ensure that your contracts are not susceptible to common attacks
+-	Explain what measures you’ve taken to ensure that your contracts are not susceptible to common attacks
 
 _ | Fallback Trap |
 --- | :---  | 

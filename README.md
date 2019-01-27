@@ -20,11 +20,17 @@ This use case will have 3 actors
 
 # Scope
 -	These use cases are realised using Ethereum accounts provided by Metamask ( as Google Chrome extension ).
--	Front end is developed using React.
--	All necessary Smart Contracts developed using Solidity.
+-	Front end is developed using ReactJS.
+-	All Smart Contracts developed using Solidity.
 -	Test Cases are well described and written JavaScript.
 -	Whole project is bundled together using Truffle.
--	IPFS acts as the Document Storage.
+-	Project is deployed in Rinkeby Network. Details in Docs/[deployed_addresses.md](https://github.com/dev-bootcamp-2019/final-project-GururajaUN/blob/master/Docs/deployed_addresses.md "deployed_addresses.md")
+-	Avoiding Common attack is detailed in Docs/[avoiding_common_attacks.md](https://github.com/dev-bootcamp-2019/final-project-GururajaUN/blob/master/Docs/avoiding_common_attacks.md "avoiding_common_attacks.md")
+-	Design Pattern Decisions are detailed in Docs/[design_pattern_desicions.md](https://github.com/dev-bootcamp-2019/final-project-GururajaUN/blob/master/Docs/design_pattern_desicions.md "design_pattern_desicions.md")
+-	Library - openzeppelin-solidity ownable is inherited and used in the project.
+-	IPFS acts as the Document Storage. Images are stored in IPFS with base64 encoding and can be decoded using https://codebeautify.org/base64-to-image-converter to cross verify. 
+	-	Example for IPFS uploaded by the project https://ipfs.infura.io/ipfs/zb2rhknnQnz3ESjzUtqibWg6FfR9Bgot1sQLtEzGxpNNp3o5k
+-	Project **Demo video** can be viewed at https://photos.app.goo.gl/L6aX9SJrsrm7PNPx9
 
 
 ## Development setup:
@@ -140,3 +146,4 @@ This address is used while deploying the contract to initialise them in the cont
 
 BONUS
 -	Used IPFS
+	

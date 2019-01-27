@@ -1,17 +1,12 @@
 ﻿
-# Design Patterns
-
 Below Document provides the details on Design Pattern considerations done for the current project. 
 
-Design Pattern Requirements from the course perspective:
-
-○ Implement a circuit breaker (emergency stop) pattern --> Done
-
-○ What other design patterns have you used / not used? --> Detailed Below.
-
-■ Why did you choose the patterns that you did? --> Detailed Below.
-
-■ Why not others? --> Detailed Below.
+## Course Requirement
+Below is the course requirement fullfilled in the project smart contracts.
+-	Implement a circuit breaker (emergency stop) pattern 
+-	What other design patterns have you used / not used? 
+-	Why did you choose the patterns that you did? 
+-	Why not others? 
 
 ## Action and Control
 
