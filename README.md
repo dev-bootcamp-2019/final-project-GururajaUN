@@ -19,6 +19,7 @@ This use case will have 3 actors
 
 
 # Scope
+-	Project **Demo video** can be viewed at https://photos.app.goo.gl/L6aX9SJrsrm7PNPx9
 -	These use cases are realised using Ethereum accounts provided by Metamask ( as Google Chrome extension ).
 -	Front end is developed using ReactJS.
 -	All Smart Contracts developed using Solidity.
@@ -30,7 +31,6 @@ This use case will have 3 actors
 -	Library - openzeppelin-solidity ownable is inherited and used in the project.
 -	IPFS acts as the Document Storage. Images are stored in IPFS with base64 encoding and can be decoded using https://codebeautify.org/base64-to-image-converter to cross verify. 
 	-	Example for IPFS uploaded by the project https://ipfs.infura.io/ipfs/zb2rhknnQnz3ESjzUtqibWg6FfR9Bgot1sQLtEzGxpNNp3o5k
--	Project **Demo video** can be viewed at https://photos.app.goo.gl/L6aX9SJrsrm7PNPx9
 
 
 ## Development setup:
