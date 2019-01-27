@@ -47,6 +47,7 @@ cd client && npm install
 ```
 Launch the Ganache UI (Preferred)
 ```
+-	Can be downloaded from https://truffleframework.com/ganache
 -	This is an lightweight application that provides detailed insight about the operations happening on your local blockchain. 
 -	This application is available all platforms( Mac/Windows/Linux )
 -	Run Ganache on http://127.0.0.1:8545
