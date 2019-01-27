@@ -169,3 +169,19 @@ contract("EmploymentVerification", function(accounts) {
 
 
 });
+
+contract("CircuitBreaker", function(accounts) {
+    const owner = accounts[0]
+    const hacker = accounts[1]
+    const catchRevert = require("./exceptions.js").catchRevert;
+
+    it("Allow  Owner to start/stop  contract ", async() => {
+        const circuitbreaker = await EmploymentVerification.deployed()
+        await circuitbreaker.startContract({from: owner});
+    });
+
+    it("Do not allow hacker to start/stop  contract ", async() => {
+        const circuitbreaker = await EmploymentVerification.deployed()
+        await catchRevert(circuitbreaker.stopContract({from: hacker}));
+    });
+});
