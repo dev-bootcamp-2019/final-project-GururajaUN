@@ -1,0 +1,1291 @@
+{
+  "contractName": "CircuitBreaker",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "state",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "stopContract",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "startContract",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060008060146101000a81548160ff0219169083600181111561006f57fe5b021790555061042d806100836000396000f30060806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806312253a6c146100725780635fb02f4d146100895780638da5cb5b146100a0578063c19d93fb146100f7578063f2fde38b14610130575b600080fd5b34801561007e57600080fd5b50610087610173565b005b34801561009557600080fd5b5061009e6101f4565b005b3480156100ac57600080fd5b506100b5610274565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561010357600080fd5b5061010c610299565b6040518082600181111561011c57fe5b60ff16815260200191505060405180910390f35b34801561013c57600080fd5b50610171600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506102ac565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101ce57600080fd5b6001600060146101000a81548160ff021916908360018111156101ed57fe5b0217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561024f57600080fd5b60008060146101000a81548160ff0219169083600181111561026d57fe5b0217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600060149054906101000a900460ff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561030757600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561034357600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a72305820ddcee190e0f194465a3bfef609a60d91a16817685da9f821b40a9a72bcfafa420029",
+  "deployedBytecode": "0x60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806312253a6c146100725780635fb02f4d146100895780638da5cb5b146100a0578063c19d93fb146100f7578063f2fde38b14610130575b600080fd5b34801561007e57600080fd5b50610087610173565b005b34801561009557600080fd5b5061009e6101f4565b005b3480156100ac57600080fd5b506100b5610274565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561010357600080fd5b5061010c610299565b6040518082600181111561011c57fe5b60ff16815260200191505060405180910390f35b34801561013c57600080fd5b50610171600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506102ac565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101ce57600080fd5b6001600060146101000a81548160ff021916908360018111156101ed57fe5b0217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561024f57600080fd5b60008060146101000a81548160ff0219169083600181111561026d57fe5b0217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600060149054906101000a900460ff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561030757600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561034357600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a72305820ddcee190e0f194465a3bfef609a60d91a16817685da9f821b40a9a72bcfafa420029",
+  "sourceMap": "97:699:0:-;;;209:68;8:9:-1;5:2;;;30:1;27;20:12;5:2;209:68:0;502:10:3;494:5;;:18;;;;;;;;;;;;;;;;;;251:21:0;243:5;;:29;;;;;;;;;;;;;;;;;;;;;;;;97:699;;;;;;",
+  "deployedSourceMap": "97:699:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;531:93;;8:9:-1;5:2;;;30:1;27;20:12;5:2;531:93:0;;;;;;700:94;;8:9:-1;5:2;;;30:1;27;20:12;5:2;700:94:0;;;;;;238:20:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;238:20:3;;;;;;;;;;;;;;;;;;;;;;;;;;;178:26:0;;8:9:-1;5:2;;;30:1;27;20:12;5:2;178:26:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;827:169:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;827:169:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;531:93:0;647:5:3;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;598:21:0;590:5;;:29;;;;;;;;;;;;;;;;;;;;;;;;531:93::o;700:94::-;647:5:3;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;768:21:0;760:5;;:29;;;;;;;;;;;;;;;;;;;;;;;;700:94::o;238:20:3:-;;;;;;;;;;;;;:::o;178:26:0:-;;;;;;;;;;;;;:::o;827:169:3:-;647:5;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;923:1;903:22;;:8;:22;;;;895:31;;;;;;;;960:8;932:37;;953:5;;;;;;;;;;;932:37;;;;;;;;;;;;983:8;975:5;;:16;;;;;;;;;;;;;;;;;;827:169;:::o",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"zeppelin/ownership/Ownable.sol\";\n\n/** @title CircuitBreaker */\ncontract CircuitBreaker is Ownable {\n  enum BreakerStates { Started, Stopped }\n  BreakerStates public state;\n\n  constructor ()\n    public\n  {\n    state = BreakerStates.Started;\n  }\n\n  /**\n  * @dev Only allow function to be executed with Contract is in state \"Started\"\n  */\n  modifier contractStarted() {\n    require(state == BreakerStates.Started);\n    _;\n  }\n\n  /**\n  * @dev Enables circuit breaker stopping all functionality\n  */\n  function stopContract()\n    external\n    onlyOwner\n  {\n    state = BreakerStates.Stopped;\n  }\n\n  /**\n  * @dev Disables circuit breaker enabling all functionality\n  */\n  function startContract()\n    external\n    onlyOwner\n  {\n    state = BreakerStates.Started;\n  }\n}\n",
+  "sourcePath": "/Users/gururajaun/vlinder_codes/consensys_course/final_project_v3/contracts/CircuitBreaker.sol",
+  "ast": {
+    "absolutePath": "/Users/gururajaun/vlinder_codes/consensys_course/final_project_v3/contracts/CircuitBreaker.sol",
+    "exportedSymbols": {
+      "CircuitBreaker": [
+        52
+      ]
+    },
+    "id": 53,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "absolutePath": "zeppelin/ownership/Ownable.sol",
+        "file": "zeppelin/ownership/Ownable.sol",
+        "id": 2,
+        "nodeType": "ImportDirective",
+        "scope": 53,
+        "sourceUnit": 651,
+        "src": "26:40:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 3,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 650,
+              "src": "124:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$650",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 4,
+            "nodeType": "InheritanceSpecifier",
+            "src": "124:7:0"
+          }
+        ],
+        "contractDependencies": [
+          650
+        ],
+        "contractKind": "contract",
+        "documentation": "@title CircuitBreaker ",
+        "fullyImplemented": true,
+        "id": 52,
+        "linearizedBaseContracts": [
+          52,
+          650
+        ],
+        "name": "CircuitBreaker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "CircuitBreaker.BreakerStates",
+            "id": 7,
+            "members": [
+              {
+                "id": 5,
+                "name": "Started",
+                "nodeType": "EnumValue",
+                "src": "157:7:0"
+              },
+              {
+                "id": 6,
+                "name": "Stopped",
+                "nodeType": "EnumValue",
+                "src": "166:7:0"
+              }
+            ],
+            "name": "BreakerStates",
+            "nodeType": "EnumDefinition",
+            "src": "136:39:0"
+          },
+          {
+            "constant": false,
+            "id": 9,
+            "name": "state",
+            "nodeType": "VariableDeclaration",
+            "scope": 52,
+            "src": "178:26:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_enum$_BreakerStates_$7",
+              "typeString": "enum CircuitBreaker.BreakerStates"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 8,
+              "name": "BreakerStates",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 7,
+              "src": "178:13:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_BreakerStates_$7",
+                "typeString": "enum CircuitBreaker.BreakerStates"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 17,
+              "nodeType": "Block",
+              "src": "237:40:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 15,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 12,
+                      "name": "state",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9,
+                      "src": "243:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 13,
+                        "name": "BreakerStates",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7,
+                        "src": "251:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_BreakerStates_$7_$",
+                          "typeString": "type(enum CircuitBreaker.BreakerStates)"
+                        }
+                      },
+                      "id": 14,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Started",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "251:21:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "src": "243:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BreakerStates_$7",
+                      "typeString": "enum CircuitBreaker.BreakerStates"
+                    }
+                  },
+                  "id": 16,
+                  "nodeType": "ExpressionStatement",
+                  "src": "243:29:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 18,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "221:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 11,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "237:0:0"
+            },
+            "scope": 52,
+            "src": "209:68:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 28,
+              "nodeType": "Block",
+              "src": "399:57:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_BreakerStates_$7",
+                          "typeString": "enum CircuitBreaker.BreakerStates"
+                        },
+                        "id": 24,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 21,
+                          "name": "state",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 9,
+                          "src": "413:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BreakerStates_$7",
+                            "typeString": "enum CircuitBreaker.BreakerStates"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 22,
+                            "name": "BreakerStates",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 7,
+                            "src": "422:13:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_BreakerStates_$7_$",
+                              "typeString": "type(enum CircuitBreaker.BreakerStates)"
+                            }
+                          },
+                          "id": 23,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Started",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "422:21:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BreakerStates_$7",
+                            "typeString": "enum CircuitBreaker.BreakerStates"
+                          }
+                        },
+                        "src": "413:30:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 20,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        668,
+                        669
+                      ],
+                      "referencedDeclaration": 668,
+                      "src": "405:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 25,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "405:39:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 26,
+                  "nodeType": "ExpressionStatement",
+                  "src": "405:39:0"
+                },
+                {
+                  "id": 27,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "450:1:0"
+                }
+              ]
+            },
+            "documentation": "@dev Only allow function to be executed with Contract is in state \"Started\"",
+            "id": 29,
+            "name": "contractStarted",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 19,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "396:2:0"
+            },
+            "src": "372:84:0",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 39,
+              "nodeType": "Block",
+              "src": "584:40:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 37,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 34,
+                      "name": "state",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9,
+                      "src": "590:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 35,
+                        "name": "BreakerStates",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7,
+                        "src": "598:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_BreakerStates_$7_$",
+                          "typeString": "type(enum CircuitBreaker.BreakerStates)"
+                        }
+                      },
+                      "id": 36,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Stopped",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "598:21:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "src": "590:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BreakerStates_$7",
+                      "typeString": "enum CircuitBreaker.BreakerStates"
+                    }
+                  },
+                  "id": 38,
+                  "nodeType": "ExpressionStatement",
+                  "src": "590:29:0"
+                }
+              ]
+            },
+            "documentation": "@dev Enables circuit breaker stopping all functionality",
+            "id": 40,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 32,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 31,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 624,
+                  "src": "572:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "572:9:0"
+              }
+            ],
+            "name": "stopContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "552:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 33,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "584:0:0"
+            },
+            "scope": 52,
+            "src": "531:93:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 50,
+              "nodeType": "Block",
+              "src": "754:40:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 48,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 45,
+                      "name": "state",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9,
+                      "src": "760:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 46,
+                        "name": "BreakerStates",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7,
+                        "src": "768:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_BreakerStates_$7_$",
+                          "typeString": "type(enum CircuitBreaker.BreakerStates)"
+                        }
+                      },
+                      "id": 47,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Started",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "768:21:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "src": "760:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BreakerStates_$7",
+                      "typeString": "enum CircuitBreaker.BreakerStates"
+                    }
+                  },
+                  "id": 49,
+                  "nodeType": "ExpressionStatement",
+                  "src": "760:29:0"
+                }
+              ]
+            },
+            "documentation": "@dev Disables circuit breaker enabling all functionality",
+            "id": 51,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 43,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 42,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 624,
+                  "src": "742:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "742:9:0"
+              }
+            ],
+            "name": "startContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 41,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "722:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 44,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "754:0:0"
+            },
+            "scope": 52,
+            "src": "700:94:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 53,
+        "src": "97:699:0"
+      }
+    ],
+    "src": "0:797:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/gururajaun/vlinder_codes/consensys_course/final_project_v3/contracts/CircuitBreaker.sol",
+    "exportedSymbols": {
+      "CircuitBreaker": [
+        52
+      ]
+    },
+    "id": 53,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "absolutePath": "zeppelin/ownership/Ownable.sol",
+        "file": "zeppelin/ownership/Ownable.sol",
+        "id": 2,
+        "nodeType": "ImportDirective",
+        "scope": 53,
+        "sourceUnit": 651,
+        "src": "26:40:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 3,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 650,
+              "src": "124:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$650",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 4,
+            "nodeType": "InheritanceSpecifier",
+            "src": "124:7:0"
+          }
+        ],
+        "contractDependencies": [
+          650
+        ],
+        "contractKind": "contract",
+        "documentation": "@title CircuitBreaker ",
+        "fullyImplemented": true,
+        "id": 52,
+        "linearizedBaseContracts": [
+          52,
+          650
+        ],
+        "name": "CircuitBreaker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "CircuitBreaker.BreakerStates",
+            "id": 7,
+            "members": [
+              {
+                "id": 5,
+                "name": "Started",
+                "nodeType": "EnumValue",
+                "src": "157:7:0"
+              },
+              {
+                "id": 6,
+                "name": "Stopped",
+                "nodeType": "EnumValue",
+                "src": "166:7:0"
+              }
+            ],
+            "name": "BreakerStates",
+            "nodeType": "EnumDefinition",
+            "src": "136:39:0"
+          },
+          {
+            "constant": false,
+            "id": 9,
+            "name": "state",
+            "nodeType": "VariableDeclaration",
+            "scope": 52,
+            "src": "178:26:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_enum$_BreakerStates_$7",
+              "typeString": "enum CircuitBreaker.BreakerStates"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 8,
+              "name": "BreakerStates",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 7,
+              "src": "178:13:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_BreakerStates_$7",
+                "typeString": "enum CircuitBreaker.BreakerStates"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 17,
+              "nodeType": "Block",
+              "src": "237:40:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 15,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 12,
+                      "name": "state",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9,
+                      "src": "243:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 13,
+                        "name": "BreakerStates",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7,
+                        "src": "251:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_BreakerStates_$7_$",
+                          "typeString": "type(enum CircuitBreaker.BreakerStates)"
+                        }
+                      },
+                      "id": 14,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Started",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "251:21:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "src": "243:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BreakerStates_$7",
+                      "typeString": "enum CircuitBreaker.BreakerStates"
+                    }
+                  },
+                  "id": 16,
+                  "nodeType": "ExpressionStatement",
+                  "src": "243:29:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 18,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 10,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "221:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 11,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "237:0:0"
+            },
+            "scope": 52,
+            "src": "209:68:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 28,
+              "nodeType": "Block",
+              "src": "399:57:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_BreakerStates_$7",
+                          "typeString": "enum CircuitBreaker.BreakerStates"
+                        },
+                        "id": 24,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 21,
+                          "name": "state",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 9,
+                          "src": "413:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BreakerStates_$7",
+                            "typeString": "enum CircuitBreaker.BreakerStates"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 22,
+                            "name": "BreakerStates",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 7,
+                            "src": "422:13:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_BreakerStates_$7_$",
+                              "typeString": "type(enum CircuitBreaker.BreakerStates)"
+                            }
+                          },
+                          "id": 23,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Started",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "422:21:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_BreakerStates_$7",
+                            "typeString": "enum CircuitBreaker.BreakerStates"
+                          }
+                        },
+                        "src": "413:30:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 20,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        668,
+                        669
+                      ],
+                      "referencedDeclaration": 668,
+                      "src": "405:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 25,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "405:39:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 26,
+                  "nodeType": "ExpressionStatement",
+                  "src": "405:39:0"
+                },
+                {
+                  "id": 27,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "450:1:0"
+                }
+              ]
+            },
+            "documentation": "@dev Only allow function to be executed with Contract is in state \"Started\"",
+            "id": 29,
+            "name": "contractStarted",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 19,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "396:2:0"
+            },
+            "src": "372:84:0",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 39,
+              "nodeType": "Block",
+              "src": "584:40:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 37,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 34,
+                      "name": "state",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9,
+                      "src": "590:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 35,
+                        "name": "BreakerStates",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7,
+                        "src": "598:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_BreakerStates_$7_$",
+                          "typeString": "type(enum CircuitBreaker.BreakerStates)"
+                        }
+                      },
+                      "id": 36,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Stopped",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "598:21:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "src": "590:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BreakerStates_$7",
+                      "typeString": "enum CircuitBreaker.BreakerStates"
+                    }
+                  },
+                  "id": 38,
+                  "nodeType": "ExpressionStatement",
+                  "src": "590:29:0"
+                }
+              ]
+            },
+            "documentation": "@dev Enables circuit breaker stopping all functionality",
+            "id": 40,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 32,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 31,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 624,
+                  "src": "572:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "572:9:0"
+              }
+            ],
+            "name": "stopContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 30,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "552:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 33,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "584:0:0"
+            },
+            "scope": 52,
+            "src": "531:93:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 50,
+              "nodeType": "Block",
+              "src": "754:40:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 48,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 45,
+                      "name": "state",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 9,
+                      "src": "760:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 46,
+                        "name": "BreakerStates",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 7,
+                        "src": "768:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_BreakerStates_$7_$",
+                          "typeString": "type(enum CircuitBreaker.BreakerStates)"
+                        }
+                      },
+                      "id": 47,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Started",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "768:21:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_BreakerStates_$7",
+                        "typeString": "enum CircuitBreaker.BreakerStates"
+                      }
+                    },
+                    "src": "760:29:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_BreakerStates_$7",
+                      "typeString": "enum CircuitBreaker.BreakerStates"
+                    }
+                  },
+                  "id": 49,
+                  "nodeType": "ExpressionStatement",
+                  "src": "760:29:0"
+                }
+              ]
+            },
+            "documentation": "@dev Disables circuit breaker enabling all functionality",
+            "id": 51,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 43,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 42,
+                  "name": "onlyOwner",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 624,
+                  "src": "742:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "742:9:0"
+              }
+            ],
+            "name": "startContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 41,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "722:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 44,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "754:0:0"
+            },
+            "scope": 52,
+            "src": "700:94:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 53,
+        "src": "97:699:0"
+      }
+    ],
+    "src": "0:797:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-01-27T05:01:52.002Z",
+  "devdoc": {
+    "methods": {
+      "startContract()": {
+        "details": "Disables circuit breaker enabling all functionality"
+      },
+      "stopContract()": {
+        "details": "Enables circuit breaker stopping all functionality"
+      },
+      "transferOwnership(address)": {
+        "details": "Allows the current owner to transfer control of the contract to a newOwner.",
+        "params": {
+          "newOwner": "The address to transfer ownership to."
+        }
+      }
+    },
+    "title": "CircuitBreaker "
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
